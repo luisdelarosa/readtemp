@@ -14,7 +14,11 @@ var temperature = 0.0
 var humidity = 0.0
 
 while (true) {
-	(temperature, humidity) = try dht_sensor.read(debug: true)
-	print("temperature: \(temperature) humidity: \(humidity)")
-	sleep(5)
+	do {
+		(temperature, humidity) = try dht_sensor.read(debug: false)
+		print("temperature: \(temperature) humidity: \(humidity)")
+	} catch {
+		print("error while reading temperature and humidity")
+	}
+	sleep(1)
 }
